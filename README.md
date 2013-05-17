@@ -1,8 +1,8 @@
-streamtest:
+* streamtest:
     This is a port of live555 source code to be used as a raw data grabber from rtsp stream requests
-analyze.py:
+* analyze.py:
     This is a processor for the output of streamtest. To generate some level of data and plot data file.
-hlsclient.py
+* hlsclient.py:
     Preliminary hls request file. It's not ready yet. But will be processed to give same or alike raw data as the streamtest.
 
 
@@ -22,7 +22,7 @@ like:
 Then looking and analyzing this raw.data you may gather information about the bandwidth usage of the streaming.
 A few lines from a raw data is as follows:
 
-"""
+
     success 0
     1367487360635475.000000 :: data 652b bw 0.000000kb/s avg 17.051465kb/s
     1367487360635517.000000 :: data 168b bw 31250.000000kb/s avg 21.442079kb/s
@@ -42,7 +42,7 @@ A few lines from a raw data is as follows:
     1367488109240223.000000 :: data 443b bw 157315.340909kb/s avg 1595.895532kb/s
     success 10
     elapsed time 7.4895e+08
-"""
+
 
 
 The rows are in order: Timestamp :: data bytes <received bytes for the burst> bw <bursts approximate bw> avg <average bandwidth>
@@ -55,13 +55,14 @@ really insightfull but very huge. So it may be hard to analyze it by hand.
 
 Sample usage of the analyze.py:
 
-"""
-  python analyze.py ../vps433/logs/log.vps433.vpshispeed.com.test\:test1-userspervm\:75.testno\:75.log
-  ../vps433/logs/data/log.vps433.vpshispeed.com.test:test1-userspervm:75.testno:75.log
-  Package count: 248650 minbyte: 9 maxbyte: 99971 averagebyte: 2896 totalbyte: 720122724
 
-  Problem count: 0
-"""
+```
+python analyze.py ../vps433/logs/log.vps433.vpshispeed.com.test\:test1-userspervm\:75.testno\:75.log
+../vps433/logs/data/log.vps433.vpshispeed.com.test:test1-userspervm:75.testno:75.log
+Package count: 248650 minbyte: 9 maxbyte: 99971 averagebyte: 2896 totalbyte: 720122724
+
+Problem count: 0
+```
 
 These figures are self explanatory but lets go over them:
 The first line of the output is a plot data file which you may create a graphics with gnuplot.
@@ -75,13 +76,17 @@ And looking into buffer figures prints out how many times the buffer is consumed
 For graphics. You may use the plot.file and gnuplot to create a png of the figures. From the file generated with analyze.py as follows:
 
 Fist edit the last two lines of the plot.file with the output png path and the input log file.
-"""
-    gnuplot plotfile
-"""
+
+
+```
+gnuplot plotfile
+```
+
 
 After this command you will have a fancy graphics with the bursts as lines.
 
 Sources:
-    live555: http://www.live555.com/
-    hlsclient.py: http://nneonneo.blogspot.com/2010/08/http-live-streaming-client.html
-    analyze.py is supplied as is from Parkyeri.
+
+* live555: http://www.live555.com/
+* hlsclient.py: http://nneonneo.blogspot.com/2010/08/http-live-streaming-client.html
+* analyze.py is supplied as is from Parkyeri.
